@@ -1,8 +1,10 @@
 :root {
-    --primary-color: #dfdfdf;
-    --secondary-color: #fff;
+    --primary-color: #06038D;
+    --secondary-color: #C6007E;
+    --main-button-color: #3434E0;
+    --primary-text-color: #fff;
     --light-color: #fff;
     --dark-color: #fff;
     --primary-background-color: #fff;
-    --secondary-background-color: #fff;
+    --secondary-background-color: #F2F2F2;
 }

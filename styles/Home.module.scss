@@ -8,13 +8,14 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background: url('/background-map.svg') no-repeat center center;
+  background-size: cover;
 }
 
 .main {
   padding: 5rem 0;
   flex: 1;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
