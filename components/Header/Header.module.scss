@@ -1,4 +1,6 @@
 .header {
+  position: absolute;
+  top: 0;
   display: flex;
   width: 100%;
   padding: 10px 15px;
@@ -9,4 +11,39 @@
   gap: 15px;
   font-size: 17px;
   text-transform: uppercase;
+}
+
+.flightHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 40px;
+  margin-left: 126px;
+
+  &__from {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__divider {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__to {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__place {
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0;
+  }
+
+  &__note {
+    font-size: 10px;
+    text-transform: uppercase;
+  }
 }

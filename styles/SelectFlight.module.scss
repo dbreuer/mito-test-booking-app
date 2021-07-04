@@ -2,21 +2,29 @@
 
 .container {
   min-height: 100vh;
-  padding: 0 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  background: #F2F2F2 url('/background-map-new.svg') no-repeat center center;
+  background-size: cover;
 }
 
 .main {
-  padding: 5rem 0;
-  flex: 1;
+  flex: auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1200px;
+  margin: 60px auto 0
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .grid {

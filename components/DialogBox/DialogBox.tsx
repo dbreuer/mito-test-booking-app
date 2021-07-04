@@ -114,7 +114,7 @@ export default function DialogBox() {
         </div>
         <div className={styles.row}>
           <div className={styles.colCenter}>
-            <Button text="Search" />
+            <Button text="Search" variant="primary" disabled={false} onClick={() =>{}} />
           </div>
         </div>
       </div>
