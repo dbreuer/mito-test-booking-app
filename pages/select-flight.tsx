@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Header from '../components/Header/Header'
-import PageTitle from '../components/PageTitle'
+import PageTitle from '../components/PageTitle/PageTitle'
 import styles from '../styles/SelectFlight.module.scss'
 import commonStyles from '../styles/Common.module.scss'
 import BoundBox from '../components/BoundBox/BoundBox'
@@ -11,12 +11,9 @@ import { BookingConfirmation } from '../components/BookingConfirmation/BookingCo
 export default function SelectFlight() {
   const booking = useSelector((state: any) => state.booking.booking);
 
-
-
   return (
   <div className={styles.container}>
     <Head>
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <title>Mito Test - Select Flight</title>
     </Head>
 
@@ -48,7 +45,7 @@ export default function SelectFlight() {
     </div>
 
     </main>
-    <BookingConfirmation open={booking?.ready} />
+    <BookingConfirmation open={booking?.ready}  />
   </div>
   )
 }

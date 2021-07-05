@@ -13,7 +13,6 @@ export function useFares({departureStation, arrivalStation, date}: FareQuery) {
   const [fares, setFares] = useState([]);
 
   useEffect(() => {
-
     const fetchFares = async () => {
       const stationsResponse: any = await axios(`https://mock-air.herokuapp.com/search?departureStation=${departureStation}&arrivalStation=${arrivalStation}&date=${date}`).then((response: any) => response.data);
       if (stationsResponse) {
@@ -23,7 +22,6 @@ export function useFares({departureStation, arrivalStation, date}: FareQuery) {
       }
     }
     if (departureStation && arrivalStation && date) {
-      console.log('date', departureStation, arrivalStation, date);
       setIsLoading(true);
       fetchFares();
     }

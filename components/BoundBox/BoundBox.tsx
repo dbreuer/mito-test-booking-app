@@ -41,6 +41,7 @@ type BoundType =
     isFirst?: boolean;
     onAddTicket?: any;
     active?: boolean;
+    noTicket?: boolean;
   }
 
   type FlightTickets = {
@@ -80,25 +81,24 @@ export default function BoundBox({type, date, origin, destination}: BoundBoxProp
     dispatch(addReturnDate(selectedDay));
   }
 
-  const bundlePriceItem = (props: FareItem) => {
+  const bundlePriceItem = ({price, bundle, fareSellKey, active, isFirst, onAddTicket, noTicket}: FareItem) => {
     const toggleStatus = () => {
-      const {price, bundle, fareSellKey} = props
-      props.onAddTicket({price, bundle, fareSellKey});
+      onAddTicket({price, bundle, fareSellKey});
     }
     return (
-      <div key={props.fareSellKey + props.active} data-ref={props.fareSellKey} className={cn([styles.Option_item, {
-        [styles.Option_item__firstchild]: props.isFirst
+      <div key={fareSellKey + active} data-ref={fareSellKey} className={cn([styles.Option_item, {
+        [styles.Option_item__firstchild]: isFirst
       }])}>
-      {props.isFirst && <small className={styles.Option_item__label}>{props.bundle}</small>}
-      <Button block onClick={() => toggleStatus()} text={new Intl.NumberFormat('en-US', {
+      {isFirst && <small className={styles.Option_item__label}>{bundle}</small>}
+      {noTicket ? <Button block onClick={() => toggleStatus()} text={new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD'
-      }).format(props.price)} variant={props.active ? 'secondary' : 'outline'}></Button>
+      }).format(price)} variant={active ? 'secondary' : 'outline'}></Button> : <small>No available Ticket</small>}
     </div>
     )
   }
 
-  const fareItem = ({departure, arrival, fares, carrierCode, flightNumber}: FlightTickets, isFirst: boolean) => {
+  const fareItem = ({departure, arrival, fares, carrierCode, flightNumber, remainingTickets}: FlightTickets, isFirst: boolean) => {
     const onAddTicket = (ticketDetails: FareItem) => {
       if (type === 'inbound') {
         dispatch(addInboundFlight({departure, arrival, carrierCode, flightNumber, origin, destination, ...ticketDetails}))
@@ -114,7 +114,7 @@ export default function BoundBox({type, date, origin, destination}: BoundBoxProp
       {format(new Date(arrival), "HH:mm")}
       </div>
 
-      {fares.map(fare => bundlePriceItem({...fare, isFirst, onAddTicket, active: booking[type]?.fareSellKey === fare?.fareSellKey}))}
+      {fares.map(fare => bundlePriceItem({...fare, isFirst, onAddTicket, active: booking[type]?.fareSellKey === fare?.fareSellKey, noTicket: remainingTickets > 0}))}
 
     </div>
     )

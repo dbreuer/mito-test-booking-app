@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styles from './BookingConfirmation.module.scss'
-import { resetBooking } from '../../store/booking/action';
+import { resetBooking, cancelCheckout } from '../../store/booking/action';
 import FlightInfo from '../FlightInfo/FlightInfo';
 import { useSummary } from '../../hooks/useSummary';
 import { useRouter } from 'next/router';
@@ -10,7 +10,7 @@ import { useRouter } from 'next/router';
 export const BookingConfirmation = (props: any) => {
   const booking = useSelector((state: any) => state.booking.booking);
   const dispatch = useDispatch();
-  const {totalCost, isLoading: isCostCalculating} = useSummary();
+  const {totalCost} = useSummary();
   const router = useRouter()
 
   const resetCheckout = (event: Event) => {
@@ -19,13 +19,17 @@ export const BookingConfirmation = (props: any) => {
     router.push('/');
   }
 
+  const onBlur = () => {
+    dispatch(cancelCheckout());
+  }
+
   if (!props.open) {
     return null;
   }
 
   return (
     <div className={styles.BookingConfirmation}>
-      <div className={styles.BookingConfirmation_overlay}></div>
+      <div className={styles.BookingConfirmation_overlay} onClick={onBlur}></div>
       <div className={styles.BookingConfirmation_modal}>
         <div className={styles.BookingConfirmation_header}>
           <h3  className={styles.BookingConfirmation_header__title}>Thanks for buying your tickets at mito airlines</h3>

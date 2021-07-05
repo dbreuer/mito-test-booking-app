@@ -13,6 +13,7 @@ import Header from "../Header/Header"
 import styles from './DialogBox.module.scss'
 import { useStations } from '../../hooks/useStations';
 import { resetFlights, removeDestination } from '../../store/booking/action';
+import { useEffect } from 'react';
 import {
   addOrigin,
   addDestination,
@@ -49,11 +50,6 @@ export default function DialogBox() {
   const handleDepartureInput = (e: any, option: any) => {
     dispatch(addOrigin(option));
     dispatch(removeDestination())
-    if (booking?.origin?.connections) {
-      const connections = booking?.origin.connections.map((item: any) => item.iata);
-      const filteredStations = stations.filter((item: any) => connections.includes(item.iata));
-      setAvailableDestinations(filteredStations)
-    }
   }
 
   const handleDestinationInput = (e: any, option: any) => {
@@ -72,33 +68,32 @@ export default function DialogBox() {
     dispatch(removeReturnDate())
   }
 
-  const fromValidationHandler = async () => {
+  const fromValidationHandler = () => {
     let formIsValid = true;
-    let tempErrors: FieldError = errors;
-    //Origin validation
+    let tempErrors: any = {};
     const { origin, destination, departure, returnDate } = booking;
-    if(!origin){
+    //Origin validation
+    if (!origin){
        formIsValid = false;
        tempErrors.origin = "Please select departure";
     } else {
       tempErrors.origin = null;
     }
 
-    if(!destination){
+    if (!destination){
       formIsValid = false;
       tempErrors.destination = "Please select destination";
     } else {
       tempErrors.destination = null;
     }
 
-    if(!departure){
+    if (!departure){
       formIsValid = false;
       tempErrors.departureDate = "Please select departure date";
     } else {
       tempErrors.departureDate = null;
     }
-
-    await setErrors(tempErrors);
+    setErrors(tempErrors);
     return formIsValid;
   }
 
@@ -120,13 +115,24 @@ export default function DialogBox() {
     }
   }
 
+  useEffect(()=> {
+    const fectDestionationLocations = () => {
+      const connections = booking?.origin.connections.map((item: any) => item.iata);
+      const filteredStations = stations.filter((item: any) => connections.includes(item.iata));
+      setAvailableDestinations(filteredStations)
+    }
+    if (booking?.origin) {
+      fectDestionationLocations();
+    }
+  }, [stations, booking])
+
   // useEffect(()=> {
   //   dispatch(resetBooking());
   // }, [])
 
   if (isLoading) {
     return (
-      <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>Loading ...</div>
+      <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: 28}}>Loading ...</div>
     )
   }
 
@@ -155,7 +161,7 @@ export default function DialogBox() {
                 />
               )}
             />
-            <small className={styles.errorMessage}>{errors?.origin}</small>
+            <small key={errors?.origin} className={styles.errorMessage}>{errors?.origin}</small>
           </div>
           <div className={styles.col}>
             <Autocomplete
@@ -197,7 +203,7 @@ export default function DialogBox() {
               format="MM/dd/yyyy"
               error={!!errors.departureDate}
             />
-            <small className={styles.errorMessage}>{errors.departureDate && errors.departureDate}</small>
+            <small className={styles.errorMessage}>{errors?.departureDate}</small>
           </div>
           <div className={styles.col}>
             <KeyboardDatePicker
@@ -211,7 +217,7 @@ export default function DialogBox() {
               format="MM/dd/yyyy"
               error={!!errors.returnDate}
             />
-            <small className={styles.errorMessage}>{errors.departureDate && errors.departureDate}</small>
+            <small className={styles.errorMessage}>{errors?.returnDate}</small>
           </div>
         </div>
         <div className={styles.row}>

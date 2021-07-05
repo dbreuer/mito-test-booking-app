@@ -44,7 +44,7 @@ export default class Button extends React.Component<ButtonProps> {
     <button
       id={this.props.id || undefined}
       type={this.props.type || 'button'}
-      onClick={onClickFunction || null}
+      onClick={!this.props?.disabled && onClickFunction || null}
       aria-disabled={this.props.disabled}
       className={this.computedClassName}>
         {this.props?.text}
