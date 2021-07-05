@@ -1,0 +1,18 @@
+.PageTitle {
+  &_text {
+    font-size: 40px;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: var(--primary-header-color);
+    @media (max-width: 600px) {
+      font-size: 28px;
+    }
+  }
+
+  &_icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+  }
+}

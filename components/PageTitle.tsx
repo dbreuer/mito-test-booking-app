@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-
+import styles from './PageTitle.module.scss'
 
 type PageTitleProps = {
   icon: string;
@@ -12,12 +12,7 @@ export default class PageTitle extends React.Component<PageTitleProps> {
     super(props)
   }
   render() {
-    return <div style={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      gap: '15px',
-    }}>
+    return <div className={styles.PageTitle_icon}>
     <div className="icon">
       <Image
         src={this.props.icon}
@@ -26,12 +21,7 @@ export default class PageTitle extends React.Component<PageTitleProps> {
         height={40}
       />
     </div>
-    {this.props?.title && <h1 style={{
-      fontSize: 40,
-      fontWeight: 300,
-      textTransform: 'uppercase',
-      color: 'var(--primary-header-color)',
-    }}>{this.props.title}</h1>}
+    {this.props?.title && <h1 className={styles.PageTitle_text}>{this.props.title}</h1>}
   </div>
   }
 }
