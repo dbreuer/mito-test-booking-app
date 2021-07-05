@@ -10,6 +10,7 @@
   height: 100vh;
   background: url('/background-map.svg') no-repeat center center;
   background-size: cover;
+  background-attachment: fixed;
 }
 
 .main {

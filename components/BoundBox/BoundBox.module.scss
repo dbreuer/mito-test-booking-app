@@ -56,9 +56,13 @@
     flex: 1;
     padding: 15px 15px;
     display: flex;
+    align-items: center;
     gap: 10px;
     text-transform: uppercase;
     color: #919191;
+    border: none;
+    background-color: var(--primary-background-color);
+    cursor: pointer;
   }
 
   &_previousdate {
@@ -112,7 +116,21 @@
 
   &_item {
     flex: 1;
-    padding: 20px;
+    padding: 20px 20px 20px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+    &__label {
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 10px;
+      margin-bottom: 10px;
+    }
+
+    &__firstchild {
+      padding: 10px 20px 20px;
+    }
 
     &:nth-child(2n+1) {
       background: #F2F2F2;
