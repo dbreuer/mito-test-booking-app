@@ -1,6 +1,7 @@
 import {
   ADD_ORIGIN,
   ADD_DESTINATION,
+  REMOVE_DESTINATION,
   ADD_DEPARTURE_DATE,
   REMOVE_DEPARTURE_DATE,
   ADD_RETURN_DATE,
@@ -10,6 +11,9 @@ import {
   REMOVE_INBOUND_FLIGHT,
   REMOVE_OUTBOUND_FLIGHT,
   RESET_FLIGHTS,
+  RESET_BOOKING,
+  CHECKOUT_FLIGHTS,
+  CANCEL_CHECKOUT_FLIGHTS,
 } from "./type";
 
 export const addOrigin = (location: any) => (dispatch: any) => {
@@ -23,6 +27,12 @@ export const addDestination = (location: any) => (dispatch: any) => {
   return dispatch({
     type: ADD_DESTINATION,
     payload: location,
+  });
+};
+
+export const removeDestination = () => (dispatch: any) => {
+  return dispatch({
+    type: REMOVE_DESTINATION,
   });
 };
 
@@ -82,6 +92,25 @@ export const removeOutboundFlight = (flight: any) => (dispatch: any) => {
 
 export const resetBooking = () => (dispatch: any) => {
   return dispatch({
+    type: RESET_BOOKING
+  });
+};
+
+export const resetFlights = () => (dispatch: any) => {
+  return dispatch({
     type: RESET_FLIGHTS,
+  });
+};
+
+export const checkoutFlights = (date: string) => (dispatch: any) => {
+  return dispatch({
+    type: CHECKOUT_FLIGHTS,
+    payload: date,
+  });
+};
+
+export const cancelCheckout = () => (dispatch: any) => {
+  return dispatch({
+    type: CANCEL_CHECKOUT_FLIGHTS,
   });
 };

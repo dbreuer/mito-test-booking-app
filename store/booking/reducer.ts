@@ -1,6 +1,7 @@
 import {
   ADD_ORIGIN,
   ADD_DESTINATION,
+  REMOVE_DESTINATION,
   ADD_DEPARTURE_DATE,
   REMOVE_DEPARTURE_DATE,
   ADD_RETURN_DATE,
@@ -10,7 +11,10 @@ import {
   ADD_OUTBOUND_FLIGHT,
   REMOVE_OUTBOUND_FLIGHT,
   RESET_FLIGHTS,
+  RESET_BOOKING,
   GET_FLIGHTS,
+  CHECKOUT_FLIGHTS,
+  CANCEL_CHECKOUT_FLIGHTS,
 } from "./type";
 
 const initialState = {
@@ -24,7 +28,8 @@ const initialState = {
     inbound: null,
     outbound: null,
     total: 0,
-    selectedIds: [],
+    ready: false,
+    checkoutAt: null,
   },
 };
 
@@ -37,6 +42,8 @@ export default function reducer(state = initialState, action: any) {
         return { ...state, booking: { ...state.booking, origin: action.payload} };
     case ADD_DESTINATION:
         return { ...state, booking: { ...state.booking, destination: action.payload} };
+    case REMOVE_DESTINATION:
+        return { ...state, booking: { ...state.booking, destination: null } };
     case ADD_DEPARTURE_DATE:
       return { ...state, booking: { ...state.booking, departure: action.payload} };
     case REMOVE_DEPARTURE_DATE:
@@ -54,7 +61,13 @@ export default function reducer(state = initialState, action: any) {
     case REMOVE_OUTBOUND_FLIGHT:
         return { ...state, booking: { ...state.booking, outbound: initialState.booking.inbound} };
     case RESET_FLIGHTS:
-        return { ...state, booking: initialState.booking };
+        return { ...state, booking: {...state.booking, inbound: null, outbound: null, total: 0} };
+    case RESET_BOOKING:
+          return { ...state, booking: initialState.booking };
+    case CHECKOUT_FLIGHTS:
+          return { ...state, booking: {...state.booking, ready: true, checkoutAt: action.payload }};
+    case CANCEL_CHECKOUT_FLIGHTS:
+          return { ...state, booking: {...state.booking, ready: false, checkoutAt: null }};
     default:
       return state;
   }

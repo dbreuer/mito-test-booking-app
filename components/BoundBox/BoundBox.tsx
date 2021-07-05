@@ -15,7 +15,6 @@ import { useFares } from '../../hooks/useFares';
 import Placeholder from '../Placeholder/Placeholder';
 import { useSelector, useDispatch } from 'react-redux'
 import { addReturnDate, addInboundFlight, addOutboundFlight } from '../../store/booking/action';
-import { keys } from '@material-ui/core/styles/createBreakpoints';
 
 
 type BoundBoxProps = {
@@ -115,7 +114,7 @@ export default function BoundBox({type, date, origin, destination}: BoundBoxProp
       {format(new Date(arrival), "HH:mm")}
       </div>
 
-      {fares.map(fare => bundlePriceItem({...fare, isFirst, onAddTicket, active: booking[type].fareSellKey === fare.fareSellKey}))}
+      {fares.map(fare => bundlePriceItem({...fare, isFirst, onAddTicket, active: booking[type]?.fareSellKey === fare?.fareSellKey}))}
 
     </div>
     )
@@ -125,7 +124,6 @@ export default function BoundBox({type, date, origin, destination}: BoundBoxProp
     return (
       <div className={styles.SearchBox}>
         <KeyboardDatePicker
-          clearable
           autoOk
           value={searchDate}
           placeholder={type === 'inbound' ? 'Return' : 'Departure'}
@@ -157,7 +155,11 @@ export default function BoundBox({type, date, origin, destination}: BoundBoxProp
           </button>
         </div>
         <div className="Option__list">
-        {!isLoading && data.length > 0 ? data.map((item: any, index: number) => fareItem(item, index === 0)) :
+        {!isLoading ? data.length > 0 ? data.map((item: any, index: number) => fareItem(item, index === 0)) :
+          <div className={styles.Option_row}>
+            <h3 className={styles.Option_noresult}>No available tickets</h3>
+          </div>
+        :
         [0, 1, 2].map(item => (
         <div key={item} className={styles.Option_row}>
           <div className={styles.Option_metadata}>
@@ -186,8 +188,10 @@ export default function BoundBox({type, date, origin, destination}: BoundBoxProp
           </div>
           <div className={styles.BoundBox_header_info}>
             <h3 className={styles.BoundBox_header_info__title}>{origin?.shortName}</h3>
+            <h3 className={styles.BoundBox_header_info__title__mobile}>{origin?.iata}</h3>
             <ArrovSVG className={styles.BoundBox_header_info__arrow} />
             <h3 className={styles.BoundBox_header_info__title}>{destination?.shortName}</h3>
+            <h3 className={styles.BoundBox_header_info__title__mobile}>{destination?.iata}</h3>
           </div>
         </div>
         {date && renderPriceItems() || searchBox()}

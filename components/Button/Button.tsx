@@ -6,6 +6,7 @@ import cn from "classnames";
 import styles from './Button.module.scss'
 
 type ButtonProps = {
+  id?: string | null | undefined;
   text: string;
   type?: 'button' | 'submit' | 'reset';
   variant?: ButtonVariant;
@@ -41,6 +42,7 @@ export default class Button extends React.Component<ButtonProps> {
   buttonBlock(onClickFunction?: any) {
     return (
     <button
+      id={this.props.id || undefined}
       type={this.props.type || 'button'}
       onClick={onClickFunction || null}
       aria-disabled={this.props.disabled}

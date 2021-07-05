@@ -6,8 +6,14 @@ import styles from './Header.module.scss'
 
 type HeaderProps = {
   title?: string;
-  departure?: string;
-  destination?: string;
+  departure?: {
+    shortName: string;
+    iata: string;
+  };
+  destination?: {
+    shortName: string;
+    iata: string;
+  };
 }
 
 export default class Header extends React.Component<HeaderProps> {
@@ -32,7 +38,8 @@ export default class Header extends React.Component<HeaderProps> {
     {this.props?.destination && this.props?.departure && <div className={styles.flightHeader}>
         <div className={styles.flightHeader__from}>
           <small className={styles.flightHeader__note}>Leaving from</small>
-          <h3 className={styles.flightHeader__place}>{this.props.departure}</h3>
+          <h3 className={styles.flightHeader__place}>{this.props.departure?.shortName}</h3>
+          <h3 className={styles.flightHeader__place__mobile}>{this.props.departure?.iata}</h3>
         </div>
         <div className={styles.flightHeader__divider}>
         <Image
@@ -50,7 +57,8 @@ export default class Header extends React.Component<HeaderProps> {
         </div>
         <div className={styles.flightHeader__to}>
           <small className={styles.flightHeader__note}>&nbsp;</small>
-          <h3 className={styles.flightHeader__place}>{this.props.destination}</h3>
+          <h3 className={styles.flightHeader__place}>{this.props.destination?.shortName}</h3>
+          <h3 className={styles.flightHeader__place__mobile}>{this.props.destination?.iata}</h3>
         </div>
       </div>}
   </div>

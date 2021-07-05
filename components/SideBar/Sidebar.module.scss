@@ -3,10 +3,27 @@
   position: sticky;
   top: 80px;
 
+  @media (max-width: 600px) {
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    width: 100%;
+  }
+
   &_wrapper {
-    margin: 0 0 20px;
     background: var(--primary-background-color);
     border-top: 1px solid #C1C1C1;
+
+    @media (max-width: 600px) {
+      margin: 0 0;
+      max-height: 0rem;
+      overflow-x: hidden;
+      transition: max-height 0.3s linear;
+    }
+
+    &__open {
+      max-height: 30rem;
+    }
   }
 
   &_header {
@@ -43,32 +60,7 @@
     padding: 0 15px;
     background-color: var(--primary-color);
     color: var(--light-color);
+    margin: 0 0 20px;
   }
 
-  &_infoDate {
-    display: block;
-    float: left;
-    margin-right: 10px;
-    text-align: center;
-    text-transform: uppercase;
-    background: #fff;
-    border: 2px solid #e1e1e1;
-    border-radius: 3px;
-    color: #343434;
-
-    &__month {
-      display: block;
-      width: 100%;
-      padding: 3px 6px;
-      font-size: 13px;
-      background: #f2f2f2;
-    }
-
-    &__day {
-      display: block;
-      padding: 3px 6px;
-      font-size: 18px;
-      font-weight: 700;
-    }
-  }
 }

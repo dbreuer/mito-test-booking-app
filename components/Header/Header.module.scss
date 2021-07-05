@@ -20,6 +20,9 @@
   align-items: center;
   gap: 40px;
   margin-left: 126px;
+  @media (max-width: 600px) {
+    margin-left: 0;
+  }
 
   &__from {
     display: flex;
@@ -40,6 +43,17 @@
     font-size: 20px;
     font-weight: 400;
     margin: 0;
+    @media (max-width: 600px) {
+      display: none;
+    }
+    &__mobile {
+      display: none;
+      margin: 0;
+
+      @media (max-width: 600px) {
+        display: block;
+      }
+    }
   }
 
   &__note {

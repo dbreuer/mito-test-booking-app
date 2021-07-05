@@ -1,0 +1,37 @@
+.FlightInfo {
+  padding: 0 0 15px;
+  color: #343434;
+
+  &__before {
+    border-top: 1px dashed;
+    padding-top: 15px;
+    margin-top: 15px;
+  }
+
+  &_infoDate {
+    display: block;
+    float: left;
+    margin-right: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    background: #fff;
+    border: 2px solid #e1e1e1;
+    border-radius: 3px;
+    color: #343434;
+
+    &__month {
+      display: block;
+      width: 100%;
+      padding: 3px 6px;
+      font-size: 13px;
+      background: #f2f2f2;
+    }
+
+    &__day {
+      display: block;
+      padding: 3px 6px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+  }
+}

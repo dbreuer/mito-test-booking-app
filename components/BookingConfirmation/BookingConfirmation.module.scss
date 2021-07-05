@@ -1,0 +1,93 @@
+.BookingConfirmation {
+  &_overlay {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    left: 0;
+  }
+
+  &_modal {
+    background: #FFFFFF;
+    border-radius: 3px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &_header {
+    background: #F2F2F2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 30px;
+
+    &__title {
+      color: #06038D;
+      font-weight: 300;
+      font-size: 16px;
+      text-transform: uppercase;
+      margin: 0;
+    }
+  }
+
+  &_body {
+    display: flex;
+
+    &_col {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding: 20px 20px 5px;
+    }
+  }
+
+  &_footer {
+    display: flex;
+    justify-content: space-between;
+
+    &__title {
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 23px;
+      text-transform: uppercase;
+      color: #343434;
+      margin: 0;
+    }
+
+    &__amount {
+      color: #06038D;
+    }
+
+    &__link {
+      font-weight: bold;
+      font-size: 12px;
+      line-height: 17px;
+      display: flex;
+      align-items: center;
+      text-align: right;
+      text-decoration-line: underline;
+      text-transform: uppercase;
+      color: #C6007E;
+    }
+
+    &_left,
+    &_right {
+      flex: 1;
+      display: flex;
+      padding: 20px 20px;
+    }
+
+    &_left {
+      justify-content: flex-start;
+    }
+
+    &_right {
+      justify-content: flex-end;
+    }
+  }
+
+
+}

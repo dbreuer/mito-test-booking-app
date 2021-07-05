@@ -1,6 +1,4 @@
 import Head from 'next/head'
-import Link from 'next/link'
-import Image from 'next/image'
 import Header from '../components/Header/Header'
 import PageTitle from '../components/PageTitle'
 import styles from '../styles/SelectFlight.module.scss'
@@ -8,9 +6,13 @@ import commonStyles from '../styles/Common.module.scss'
 import BoundBox from '../components/BoundBox/BoundBox'
 import Sidebar from '../components/SideBar/Sidebar';
 import { useSelector } from 'react-redux'
+import { BookingConfirmation } from '../components/BookingConfirmation/BookingConfirmation';
 
 export default function SelectFlight() {
   const booking = useSelector((state: any) => state.booking.booking);
+
+
+
   return (
   <div className={styles.container}>
     <Head>
@@ -18,7 +20,7 @@ export default function SelectFlight() {
       <title>Mito Test - Select Flight</title>
     </Head>
 
-    <Header departure="Budapest" destination="Barcelona el Prat" />
+    <Header departure={booking.origin} destination={booking.destination} />
     <main className={styles.main}>
     <div className={styles.body}>
       <PageTitle title='Select flight' icon="/flight-icon.svg" />
@@ -46,6 +48,7 @@ export default function SelectFlight() {
     </div>
 
     </main>
+    <BookingConfirmation open={booking?.ready} />
   </div>
   )
 }

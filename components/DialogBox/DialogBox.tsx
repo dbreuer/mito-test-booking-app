@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useRouter } from "next/router"
 
 import { KeyboardDatePicker } from "@material-ui/pickers";
@@ -12,6 +12,7 @@ import Header from "../Header/Header"
 
 import styles from './DialogBox.module.scss'
 import { useStations } from '../../hooks/useStations';
+import { resetFlights, removeDestination } from '../../store/booking/action';
 import {
   addOrigin,
   addDestination,
@@ -19,7 +20,6 @@ import {
   removeDepartureDate,
   addReturnDate,
   removeReturnDate,
-  resetBooking,
  } from '../../store/booking/action';
 
 interface FieldError {
@@ -38,7 +38,7 @@ const initialFieldErrors = {
 
 export default function DialogBox() {
   const router = useRouter();
-  const stations = useStations();
+  const {isLoading, stations} = useStations();
   const booking = useSelector((state: any) => state.booking.booking);
   const dispatch = useDispatch()
 
@@ -48,8 +48,9 @@ export default function DialogBox() {
 
   const handleDepartureInput = (e: any, option: any) => {
     dispatch(addOrigin(option));
-    if (booking?.origin) {
-      const connections = option.connections.map((item: any) => item.iata);
+    dispatch(removeDestination())
+    if (booking?.origin?.connections) {
+      const connections = booking?.origin.connections.map((item: any) => item.iata);
       const filteredStations = stations.filter((item: any) => connections.includes(item.iata));
       setAvailableDestinations(filteredStations)
     }
@@ -105,6 +106,8 @@ export default function DialogBox() {
     event.preventDefault();
     if (fromValidationHandler()) {
       const { origin, destination, departure, returnDate } = booking;
+      dispatch(resetFlights());
+
       router.push({
         pathname: '/select-flight',
         query: {
@@ -121,9 +124,9 @@ export default function DialogBox() {
   //   dispatch(resetBooking());
   // }, [])
 
-  if (stations === null) {
+  if (isLoading) {
     return (
-      'Loading ...'
+      <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>Loading ...</div>
     )
   }
 
@@ -136,7 +139,8 @@ export default function DialogBox() {
           <div className={styles.col}>
             <Autocomplete
               freeSolo
-              id="free-solo-demo"
+              disableClearable
+              id="origin-airports"
               onChange={handleDepartureInput}
               options={stations}
               value={booking?.origin}
@@ -156,8 +160,9 @@ export default function DialogBox() {
           <div className={styles.col}>
             <Autocomplete
               freeSolo
-              id="free-solo-2-demo"
-              disabled={!booking?.origin}
+              disableClearable
+              id="destionation-airports"
+              disabled={!booking?.origin && !availableDestinations}
               onChange={handleDestinationInput}
               options={availableDestinations}
               value={booking?.destination}
@@ -182,6 +187,7 @@ export default function DialogBox() {
           <div className={styles.col}>
             <KeyboardDatePicker
               autoOk
+              id="departure-date-input"
               value={booking.departure}
               placeholder="Departure"
               variant="inline"
@@ -196,6 +202,7 @@ export default function DialogBox() {
           <div className={styles.col}>
             <KeyboardDatePicker
               autoOk
+              id="return-date-input"
               value={booking?.returnDate}
               placeholder="Return"
               inputVariant="outlined"
@@ -209,7 +216,7 @@ export default function DialogBox() {
         </div>
         <div className={styles.row}>
           <div className={styles.colCenter}>
-            <Button text="Search" variant="primary" type="submit" />
+            <Button id="search-flight-button" text="Search" variant="primary" type="submit" />
           </div>
         </div>
       </form>
