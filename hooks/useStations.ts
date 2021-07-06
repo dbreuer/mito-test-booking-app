@@ -9,7 +9,7 @@ export function useStations() {
   useEffect(() => {
     setIsLoading(true);
     const fetchStations = async () => {
-      const stationsResponse: any = await axios('https://mock-air.herokuapp.com/asset/stations').then((response: any) => response.data);
+      const stationsResponse: any = await axios(`${process.env.NEXT_PUBLIC_PUBLIC_API_URL}/asset/stations`).then((response: any) => response.data);
       if (stationsResponse) {
         const mappedStations: any = stationsResponse.map((item: any) => ({ label: item.shortName, value: item.iata, ...item }));
         setStations(mappedStations);

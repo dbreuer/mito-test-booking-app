@@ -12,5 +12,14 @@ module.exports = {
     });
 
     return config;
-  }
+  },
+  exportPathMap: async function (
+    defaultPathMap,
+    { dev, dir, outDir, distDir, buildId }
+  ) {
+    return {
+      '/': { page: '/' },
+      '/select-flight': { page: '/select-flight' },
+    }
+  },
 }

@@ -1,12 +1,14 @@
 import Head from 'next/head'
+import { useSelector } from 'react-redux'
+
 import Header from '../components/Header/Header'
 import PageTitle from '../components/PageTitle/PageTitle'
-import styles from '../styles/SelectFlight.module.scss'
-import commonStyles from '../styles/Common.module.scss'
 import BoundBox from '../components/BoundBox/BoundBox'
 import Sidebar from '../components/SideBar/Sidebar';
-import { useSelector } from 'react-redux'
 import { BookingConfirmation } from '../components/BookingConfirmation/BookingConfirmation';
+
+import styles from '../styles/SelectFlight.module.scss'
+import commonStyles from '../styles/Common.module.scss'
 
 export default function SelectFlight() {
   const booking = useSelector((state: any) => state.booking.booking);

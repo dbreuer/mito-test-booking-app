@@ -1,8 +1,7 @@
 import { createStore, applyMiddleware, combineReducers, Store } from "redux"
-import { createWrapper, HYDRATE } from "next-redux-wrapper"
+import { createWrapper } from "next-redux-wrapper"
 import thunkMiddleware from "redux-thunk"
 import booking from './booking/reducer'
-import { RootStateOrAny } from "react-redux";
 
 export interface State {
   tick: string;

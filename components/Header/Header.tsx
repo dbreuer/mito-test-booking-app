@@ -16,12 +16,9 @@ type HeaderProps = {
   };
 }
 
-export default class Header extends React.Component<HeaderProps> {
-  constructor(props: HeaderProps) {
-    super(props)
-  }
-  render() {
-    return <div className={styles.header}>
+export default function Header ({title, departure, destination}: HeaderProps) {
+    return (
+    <div className={styles.header}>
     <div className="icon">
       <Link href="/">
         <a>
@@ -34,12 +31,12 @@ export default class Header extends React.Component<HeaderProps> {
         </a>
       </Link>
     </div>
-    {this.props?.title && <div className="title">{this.props.title}</div>}
-    {this.props?.destination && this.props?.departure && <div className={styles.flightHeader}>
+    {title && <div className="title">{title}</div>}
+    {destination && departure && <div className={styles.flightHeader}>
         <div className={styles.flightHeader__from}>
           <small className={styles.flightHeader__note}>Leaving from</small>
-          <h3 className={styles.flightHeader__place}>{this.props.departure?.shortName}</h3>
-          <h3 className={styles.flightHeader__place__mobile}>{this.props.departure?.iata}</h3>
+          <h3 className={styles.flightHeader__place}>{departure?.shortName}</h3>
+          <h3 className={styles.flightHeader__place__mobile}>{departure?.iata}</h3>
         </div>
         <div className={styles.flightHeader__divider}>
         <Image
@@ -57,10 +54,10 @@ export default class Header extends React.Component<HeaderProps> {
         </div>
         <div className={styles.flightHeader__to}>
           <small className={styles.flightHeader__note}>&nbsp;</small>
-          <h3 className={styles.flightHeader__place}>{this.props.destination?.shortName}</h3>
-          <h3 className={styles.flightHeader__place__mobile}>{this.props.destination?.iata}</h3>
+          <h3 className={styles.flightHeader__place}>{destination?.shortName}</h3>
+          <h3 className={styles.flightHeader__place__mobile}>{destination?.iata}</h3>
         </div>
       </div>}
   </div>
-  }
+    )
 }

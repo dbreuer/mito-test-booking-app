@@ -4,24 +4,21 @@ import styles from './PageTitle.module.scss'
 
 type PageTitleProps = {
   icon: string;
-  title: string;
+  title?: string;
 }
 
-export default class PageTitle extends React.Component<PageTitleProps> {
-  constructor(props: PageTitleProps) {
-    super(props)
-  }
-  render() {
-    return <div className={styles.PageTitle_icon}>
-    <div className="icon">
-      <Image
-        src={this.props.icon}
-        alt="Page title icon"
-        width={40}
-        height={40}
-      />
+export default function PageTitle({ icon, title }: PageTitleProps) {
+  return (
+    <div className={styles.PageTitle_icon}>
+      <div className="icon">
+        <Image
+          src={icon}
+          alt="Page title icon"
+          width={40}
+          height={40}
+        />
+      </div>
+      {title && <h1 className={styles.PageTitle_text}>{title}</h1>}
     </div>
-    {this.props?.title && <h1 className={styles.PageTitle_text}>{this.props.title}</h1>}
-  </div>
-  }
+  )
 }

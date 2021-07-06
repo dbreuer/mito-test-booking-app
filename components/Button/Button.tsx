@@ -23,42 +23,35 @@ type ButtonVariant =
 | 'outline';
 
 
+export default function Button({id, text, type, variant, disabled, block, onClick, href}: ButtonProps) {
 
-export default class Button extends React.Component<ButtonProps> {
-
-  constructor(props: ButtonProps) {
-    super(props)
-  }
-
-  computedClassName = cn(styles.Button, {
-    [styles.Button_default]: this.props.variant === 'default',
-    [styles.Button_primary]: this.props.variant === 'primary',
-    [styles.Button_secondary]: this.props.variant === 'secondary',
-    [styles.Button_outline]: this.props.variant === 'outline',
-    [styles.Button_block]: this.props.block,
-    [styles.Button_disabled]: this.props.disabled,
+  const computedClassName = cn(styles.Button, {
+    [styles.Button_default]: variant === 'default',
+    [styles.Button_primary]: variant === 'primary',
+    [styles.Button_secondary]: variant === 'secondary',
+    [styles.Button_outline]: variant === 'outline',
+    [styles.Button_block]: block,
+    [styles.Button_disabled]: disabled,
   });
 
-  buttonBlock(onClickFunction?: any) {
+  function buttonBlock(onClickFunction?: any) {
     return (
     <button
-      id={this.props.id || undefined}
-      type={this.props.type || 'button'}
-      onClick={!this.props?.disabled && onClickFunction || null}
-      aria-disabled={this.props.disabled}
-      className={this.computedClassName}>
-        {this.props?.text}
+      id={id || undefined}
+      type={type || 'button'}
+      onClick={!disabled && onClickFunction || null}
+      aria-disabled={disabled}
+      className={computedClassName}>
+        {text}
       </button>
     )
   }
 
-  render() {
-    if (this.props?.href) {
+    if (href) {
       return <Link href="/select-flight">
-        {this.buttonBlock()}
+        {buttonBlock()}
       </Link>
     }
 
-    return this.buttonBlock(this.props.onClick);
-  }
+    return buttonBlock(onClick);
 }

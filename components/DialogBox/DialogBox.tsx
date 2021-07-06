@@ -23,6 +23,10 @@ import {
   removeReturnDate,
  } from '../../store/booking/action';
 
+ type DialogBoxProps = {
+   stations: any[]
+ }
+
 interface FieldError {
   origin: string | null;
   destination: string | null;
@@ -37,9 +41,9 @@ const initialFieldErrors = {
   returnDate: null,
 }
 
-export default function DialogBox() {
+export default function DialogBox({stations}: DialogBoxProps) {
   const router = useRouter();
-  const {isLoading, stations} = useStations();
+  // const {isLoading, stations} = useStations();
   const booking = useSelector((state: any) => state.booking.booking);
   const dispatch = useDispatch()
 
@@ -118,23 +122,19 @@ export default function DialogBox() {
   useEffect(()=> {
     const fectDestionationLocations = () => {
       const connections = booking?.origin.connections.map((item: any) => item.iata);
-      const filteredStations = stations.filter((item: any) => connections.includes(item.iata));
+      const filteredStations: any = stations.filter((item: any) => connections.includes(item.iata));
       setAvailableDestinations(filteredStations)
     }
-    if (booking?.origin) {
+    if (stations && booking?.origin) {
       fectDestionationLocations();
     }
   }, [stations, booking])
 
-  // useEffect(()=> {
-  //   dispatch(resetBooking());
-  // }, [])
-
-  if (isLoading) {
-    return (
-      <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: 28}}>Loading ...</div>
-    )
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: 28}}>Loading ...</div>
+  //   )
+  // }
 
 
   return (
