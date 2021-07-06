@@ -1,0 +1,44 @@
+@import 'variables';
+
+.container {
+  min-height: 100vh;
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url('/background-map.svg') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.main {
+  padding: 5rem 0;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin-top: 3rem;
+  background: var(--primary-color);
+}
+
+
+@media (max-width: $base-mobile-viewport) {
+  .main {
+    padding: 0 0;
+  }
+
+  .grid {
+    width: 100%;
+    flex-direction: column;
+  }
+}

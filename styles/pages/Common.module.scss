@@ -1,0 +1,27 @@
+@import 'variables';
+
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin: 0 0 80px;
+}
+
+.sidebar {
+
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  flex: auto;
+  gap: 20px;
+}
+
+@media (max-width: $base-mobile-viewport) {
+  .container {
+    flex-direction: column;
+    margin: 0 0 140px;
+  }
+}
