@@ -7,8 +7,8 @@ import BoundBox from '../components/BoundBox/BoundBox'
 import Sidebar from '../components/SideBar/Sidebar';
 import { BookingConfirmation } from '../components/BookingConfirmation/BookingConfirmation';
 
-import styles from '../styles/SelectFlight.module.scss'
-import commonStyles from '../styles/Common.module.scss'
+import styles from '../styles/pages/SelectFlight.module.scss'
+import commonStyles from '../styles/pages/Common.module.scss'
 
 export default function SelectFlight() {
   const booking = useSelector((state: any) => state.booking.booking);

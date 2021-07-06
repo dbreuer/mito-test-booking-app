@@ -1,11 +1,14 @@
+@import '../../styles/variables.scss';
+@import '../../styles/typography.scss';
+
 .BoundBox {
-  background: #FFFFFF;
+  background: var(--primary-background-color);
   box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.1);
-  border-radius: 2px;
+  border-radius: $base-border-radius-small;
 
   &_header {
-    background: #F2F2F2;
-    padding: 10px 15px;
+    background: var(--secondary-background-color);
+    padding: 10px $base-padding;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -14,12 +17,8 @@
 
     &_direction {
       &__title {
-        color: #919191;
-        text-transform: uppercase;
-        font-weight: 500;
-        font-size: 18px;
+        @include header-text-large;
         margin: 10px auto;
-
       }
     }
 
@@ -28,20 +27,18 @@
       justify-content: center;
       align-items: center;
       gap: 20px;
-      color: #06038D;
 
       &__title {
-        font-size: 22px;
-        text-transform: capitalize;
+        @include header-text-extra-large;
         margin: 10px auto;
 
-        @media (max-width: 600px) {
+        @media (max-width: $base-mobile-viewport) {
           display: none;
         }
 
         &__mobile {
           display: none;
-          @media (max-width: 600px) {
+          @media (max-width: $base-mobile-viewport) {
             display: block;
           }
         }
@@ -49,30 +46,26 @@
       }
 
       &__arrow path {
-        fill: #06038D;
+        fill: var(--primary-color);
       }
     }
-  }
-
-  &_container {
-
   }
 
   &_navigation {
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid #E5E5E5;
+    border-bottom: 1px solid var(--border-color);
   }
 
   &_previousdate,
   &_nextdate {
     flex: 1;
-    padding: 15px 15px;
+    padding: $base-padding $base-padding;
     display: flex;
     align-items: center;
     gap: 10px;
     text-transform: uppercase;
-    color: #919191;
+    color: var(--secondary-text-color);
     border: none;
     background-color: var(--primary-background-color);
     cursor: pointer;
@@ -88,12 +81,12 @@
 
   &_selecteddate {
     flex: 1;
-    padding: 15px 15px;
+    padding: $base-padding $base-padding;
     display: flex;
     justify-content: center;
     font-size: 18px;
     text-align: center;
-    @media (max-width: 600px) {
+    @media (max-width: $base-mobile-viewport) {
       font-size: 14px;
     }
   }
@@ -105,7 +98,7 @@
   align-items: center;
   gap: 15px;
   padding: 40px 40px;
-  @media (max-width: 600px) {
+  @media (max-width: $base-mobile-viewport) {
     flex-direction: column;
   }
 }
@@ -124,10 +117,10 @@
     align-items: center;
 
     &:not(:last-child) {
-      border-bottom: 1px solid #E5E5E5;
+      border-bottom: 1px solid var(--border-color);
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: $base-mobile-viewport) {
       flex-direction: column;
     }
   }
@@ -140,35 +133,33 @@
     align-items: center;
     padding: 25px 25px;
 
-    @media (max-width: 600px) {
+    @media (max-width: $base-mobile-viewport) {
       width: 100%;
     }
   }
 
   &_item {
     flex: 1;
-    padding: 20px 20px 20px;
+    padding: $base-padding-2x $base-padding-2x $base-padding-2x;
     align-items: center;
     display: flex;
     flex-direction: column;
 
-    @media (max-width: 600px) {
+    @media (max-width: $base-mobile-viewport) {
       width: 100%;
     }
 
     &__label {
-      text-transform: uppercase;
-      font-weight: bold;
-      font-size: 10px;
+      @include label-text;
       margin-bottom: 10px;
     }
 
     &__firstchild {
-      padding: 10px 20px 20px;
+      padding: 10px $base-padding-2x $base-padding-2x;
     }
 
     &:nth-child(2n+1) {
-      background: #F2F2F2;
+      background: var(--secondary-background-color);
     }
   }
 }

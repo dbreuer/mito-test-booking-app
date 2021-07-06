@@ -2,19 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from './Header.module.scss'
-
-
-type HeaderProps = {
-  title?: string;
-  departure?: {
-    shortName: string;
-    iata: string;
-  };
-  destination?: {
-    shortName: string;
-    iata: string;
-  };
-}
+import { HeaderProps } from '../../types';
 
 export default function Header ({title, departure, destination}: HeaderProps) {
     return (

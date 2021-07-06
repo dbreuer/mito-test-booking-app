@@ -4,10 +4,13 @@
     --primary-button-color: #3434E0;
     --default-button-color: #C1C1C1;
     --primary-text-color: #fff;
+    --secondary-text-color: #919191;
     --dark-text-color: #343434;
     --primary-header-color: #0A008B;
     --light-color: #fff;
     --dark-color: #000000;
     --primary-background-color: #fff;
     --secondary-background-color: #F2F2F2;
+    --border-color: #E5E5E5;
+    --secondary-border-color: #e1e1e1;
 }

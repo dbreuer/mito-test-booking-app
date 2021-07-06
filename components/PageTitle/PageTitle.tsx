@@ -1,11 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import styles from './PageTitle.module.scss'
-
-type PageTitleProps = {
-  icon: string;
-  title?: string;
-}
+import { PageTitleProps } from '../../types'
 
 export default function PageTitle({ icon, title }: PageTitleProps) {
   return (

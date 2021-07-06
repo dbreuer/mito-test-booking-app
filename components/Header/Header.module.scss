@@ -1,9 +1,12 @@
+@import '../../styles/variables.scss';
+@import '../../styles/typography.scss';
+
 .header {
   position: absolute;
   top: 0;
   display: flex;
   width: 100%;
-  padding: 10px 15px;
+  padding: 10px $base-padding;
   background: var(--primary-color);
   color: var(--primary-text-color);
   justify-content: flex-start;
@@ -20,7 +23,7 @@
   align-items: center;
   gap: 40px;
   margin-left: 126px;
-  @media (max-width: 600px) {
+  @media (max-width: $base-mobile-viewport) {
     margin-left: 0;
   }
 
@@ -40,24 +43,22 @@
   }
 
   &__place {
-    font-size: 20px;
-    font-weight: 400;
+    @include subtitle(var(--primary-text-color), 23px, 400, none);
     margin: 0;
-    @media (max-width: 600px) {
+    @media (max-width: $base-mobile-viewport) {
       display: none;
     }
     &__mobile {
       display: none;
       margin: 0;
 
-      @media (max-width: 600px) {
+      @media (max-width: $base-mobile-viewport) {
         display: block;
       }
     }
   }
 
   &__note {
-    font-size: 10px;
-    text-transform: uppercase;
+    @include label-text;
   }
 }

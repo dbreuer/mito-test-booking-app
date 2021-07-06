@@ -9,6 +9,7 @@ import { wrapper } from "../store/store";
 
 import '../styles/colors.css'
 import '../styles/globals.scss'
+import '../styles/variables.scss'
 
 function MyApp({ Component, pageProps }: AppProps) {
 

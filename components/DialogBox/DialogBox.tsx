@@ -1,19 +1,16 @@
-import React from 'react'
-import { useRouter } from "next/router"
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
+import { useRouter } from "next/router"
+import { format, addDays } from "date-fns"
 import { KeyboardDatePicker } from "@material-ui/pickers";
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { format, addDays } from "date-fns"
-import { useSelector, useDispatch } from 'react-redux'
 
 import Button from "../Button/Button"
 import Header from "../Header/Header"
 
-import styles from './DialogBox.module.scss'
-import { useStations } from '../../hooks/useStations';
 import { resetFlights, removeDestination } from '../../store/booking/action';
-import { useEffect } from 'react';
 import {
   addOrigin,
   addDestination,
@@ -21,25 +18,10 @@ import {
   removeDepartureDate,
   addReturnDate,
   removeReturnDate,
- } from '../../store/booking/action';
+} from '../../store/booking/action';
 
- type DialogBoxProps = {
-   stations: any[]
- }
-
-interface FieldError {
-  origin: string | null;
-  destination: string | null;
-  departureDate: string | null;
-  returnDate: string | null;
-}
-
-const initialFieldErrors = {
-  origin: null,
-  destination: null,
-  departureDate: null,
-  returnDate: null,
-}
+import styles from './DialogBox.module.scss'
+import { DialogBoxProps, FieldError, initialFieldErrors} from '../../types';
 
 export default function DialogBox({stations}: DialogBoxProps) {
   const router = useRouter();

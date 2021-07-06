@@ -1,13 +1,15 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import styles from './BookingConfirmation.module.scss'
+import { useRouter } from 'next/router';
+
 import { resetBooking, cancelCheckout } from '../../store/booking/action';
 import FlightInfo from '../FlightInfo/FlightInfo';
 import { useSummary } from '../../hooks/useSummary';
-import { useRouter } from 'next/router';
 
+import styles from './BookingConfirmation.module.scss'
+import { BookingConfirmationProps } from '../../types';
 
-export const BookingConfirmation = (props: any) => {
+export const BookingConfirmation = (props: BookingConfirmationProps) => {
   const booking = useSelector((state: any) => state.booking.booking);
   const dispatch = useDispatch();
   const {totalCost} = useSummary();

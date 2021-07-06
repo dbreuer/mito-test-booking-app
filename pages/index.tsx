@@ -1,5 +1,5 @@
 import DialogBox from '../components/DialogBox/DialogBox'
-import styles from '../styles/Home.module.scss'
+import styles from '../styles/pages/Home.module.scss'
 
 type HomeProps = {
   stations: any[]
@@ -19,7 +19,7 @@ export async function getStaticProps() {
   // Call an external API endpoint to get posts
   const res = await fetch(`${process.env.NEXT_PUBLIC_PUBLIC_API_URL}/asset/stations`)
   const stationsReponse = await res.json()
-  const stations = stationsReponse.map((item: any) => ({ label: item.shortName, value: item.iata, ...item }))
+  const stations = stationsReponse.map((item: {shortName: string, iata: string}) => ({ label: item.shortName, value: item.iata, ...item }))
 
   return {
     props: {

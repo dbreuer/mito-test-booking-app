@@ -1,10 +1,14 @@
+@import '../../styles/variables.scss';
+
 .FlightInfo {
   padding: 0 0 15px;
-  color: #343434;
+  color: var(--dark-text-color);
+  display: flex;
+  align-items: flex-start;
 
   &__before {
     border-top: 1px dashed;
-    padding-top: 15px;
+    padding-top: $base-padding;
     margin-top: 15px;
   }
 
@@ -14,17 +18,17 @@
     margin-right: 10px;
     text-align: center;
     text-transform: uppercase;
-    background: #fff;
-    border: 2px solid #e1e1e1;
-    border-radius: 3px;
-    color: #343434;
+    background: var(--primary-background-color);
+    border: 2px solid var(--secondary-border-color);
+    border-radius: $base-border-radius;
+    color: var(--dark-text-color);
 
     &__month {
       display: block;
       width: 100%;
       padding: 3px 6px;
       font-size: 13px;
-      background: #f2f2f2;
+      background: var(--secondary-background-color);
     }
 
     &__day {
@@ -33,5 +37,9 @@
       font-size: 18px;
       font-weight: 700;
     }
+  }
+
+  &_infoText {
+    margin: 0 0 5px;
   }
 }

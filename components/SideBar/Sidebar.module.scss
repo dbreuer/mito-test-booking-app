@@ -1,9 +1,12 @@
+@import '../../styles/variables.scss';
+@import '../../styles/typography.scss';
+
 .SideBar {
   width: 230px;
   position: sticky;
   top: 80px;
 
-  @media (max-width: 600px) {
+  @media (max-width: $base-mobile-viewport) {
     position: fixed;
     bottom: 0;
     top: auto;
@@ -12,9 +15,9 @@
 
   &_wrapper {
     background: var(--primary-background-color);
-    border-top: 1px solid #C1C1C1;
+    border-top: 1px solid var(--default-button-color);
 
-    @media (max-width: 600px) {
+    @media (max-width: $base-mobile-viewport) {
       margin: 0 0;
       max-height: 0rem;
       overflow-x: hidden;
@@ -30,7 +33,7 @@
     justify-content: space-between;
     display: flex;
     align-items: center;
-    padding: 0 15px;
+    padding: 0 $base-padding;
 
     &__title {
       text-transform: uppercase;
@@ -40,15 +43,13 @@
     }
 
     &__total {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--primary-color);
+      @include header-text-small;
     }
   }
 
   &_body {
-    padding: 15px;
-    color: #919191;
+    padding: $base-padding $base-padding;
+    color: var(--secondary-text-color);
     font-weight: 700;
     font-size: 16px;
   }
@@ -57,11 +58,11 @@
     justify-content: space-between;
     display: flex;
     align-items: center;
-    padding: 0 15px;
+    padding: 0 $base-padding;
     background-color: var(--primary-color);
     color: var(--light-color);
     margin: 0 0 20px;
-    @media (max-width: 600px) {
+    @media (max-width: $base-mobile-viewport) {
       margin: 0 0;
     }
   }

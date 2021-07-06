@@ -1,57 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image'
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
 
 import { KeyboardDatePicker } from "@material-ui/pickers"
 import { format, addDays, subDays } from "date-fns"
 import cn from "classnames";
 
 import Button from '../Button/Button'
+import Placeholder from '../Placeholder/Placeholder';
+import { useFares } from '../../hooks/useFares';
+import { addReturnDate, addInboundFlight, addOutboundFlight } from '../../store/booking/action';
+
 import styles from './BoundBox.module.scss'
+
 import ArrovSVG from '../../public/Arrow.svg'
 import CaretLeftSVG from '../../public/carat-left-icon.svg'
 import CaretRightSVG from '../../public/carat-right-icon.svg'
 import SmallArrowSVG from '../../public/small-arrow-icon.svg'
-import { useFares } from '../../hooks/useFares';
-import Placeholder from '../Placeholder/Placeholder';
-import { useSelector, useDispatch } from 'react-redux'
-import { addReturnDate, addInboundFlight, addOutboundFlight } from '../../store/booking/action';
+import {
+  BoundBoxProps,
+  FareItem,
+  FlightTickets,
+ } from '../../types';
 
-
-type BoundBoxProps = {
-  type: BoundType;
-  date: string | number | Date;
-  origin: {
-    iata: string;
-    shortName: string;
-  };
-  destination: {
-    iata: string;
-    shortName: string;
-  };
-}
-
-type BoundType =
-  | 'outbound'
-  | 'inbound';
-
-  type FareItem = {
-    fareSellKey: string;
-    price: number;
-    bundle: 'basic' | 'standard' | 'plus',
-    isFirst?: boolean;
-    onAddTicket?: any;
-    active?: boolean;
-    noTicket?: boolean;
-  }
-
-  type FlightTickets = {
-    carrierCode: string;
-    flightNumber: string;
-    remainingTickets: number;
-    departure: string;
-    arrival: string;
-    fares: FareItem[]
-  }
 
 export default function BoundBox({type, date, origin, destination}: BoundBoxProps) {
   const booking = useSelector((state: any) => state.booking.booking);

@@ -4,19 +4,9 @@ import cn from "classnames";
 
 import styles from './FlightInfo.module.scss'
 
-type FlightInfo = {
-  secondary?: boolean;
-  departure: string;
-  arrival: string;
-  origin: {
-    shortName: string;
-  };
-  destination: {
-    shortName: string;
-  }
-}
+import { FlightInfoProps } from '../../types';
 
-export default function FlightInfo({secondary, departure, arrival, origin, destination }: FlightInfo) {
+export default function FlightInfo({secondary, departure, arrival, origin, destination }: FlightInfoProps) {
   return (
     <div className={cn([styles.FlightInfo, {
       [styles.FlightInfo__before]: secondary
@@ -25,8 +15,8 @@ export default function FlightInfo({secondary, departure, arrival, origin, desti
         <span className={styles.FlightInfo_infoDate__month}>{format(new Date(departure), 'MMM')}</span>
         <span className={styles.FlightInfo_infoDate__day}>{format(new Date(departure), 'dd')}</span>
       </span>
-
-      {origin?.shortName} - {destination?.shortName}<br/>
+    <div >
+      <h5 className={styles.FlightInfo_infoText}>{origin?.shortName} - {destination?.shortName}</h5>
       <small>
         {format(new Date(departure), 'EEE')}
         {' '}
@@ -34,6 +24,7 @@ export default function FlightInfo({secondary, departure, arrival, origin, desti
         {' - '}
         {format(new Date(arrival), 'HH:mm')}
       </small>
+    </div>
     </div>
   )
 }

@@ -4,23 +4,7 @@ import Link from 'next/link'
 import cn from "classnames";
 
 import styles from './Button.module.scss'
-
-type ButtonProps = {
-  id?: string | null | undefined;
-  text: string;
-  type?: 'button' | 'submit' | 'reset';
-  variant?: ButtonVariant;
-  disabled?: boolean;
-  block?: boolean;
-  onClick?: any;
-  href?: string;
-}
-
-type ButtonVariant =
-| 'default'
-| 'primary'
-| 'secondary'
-| 'outline';
+import { ButtonProps } from '../../types';
 
 
 export default function Button({id, text, type, variant, disabled, block, onClick, href}: ButtonProps) {
