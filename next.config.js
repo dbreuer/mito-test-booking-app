@@ -3,6 +3,9 @@ const path = require('path')
 module.exports = {
   distDir: 'build',
   reactStrictMode: true,
+  images: {
+    loader: 'cloudinary',
+  },
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
